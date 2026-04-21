@@ -31,9 +31,3 @@ list-generations:
 
 rollback:
 	sudo darwin-rebuild --rollback --flake .#$(HOST)
-
-work:
-	$(MAKE) HOST=K1QJWD679P switch
-
-home:
-	$(MAKE) HOST=Majula switch
