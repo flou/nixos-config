@@ -17,6 +17,5 @@
         modules = [ ./hosts/work ];
       };
     };
-    formatter.aarch64-darwin = inputs.nixpkgs.legacyPackages.aarch64-darwin.alejandra;
   };
 }
