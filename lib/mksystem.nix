@@ -1,4 +1,5 @@
 { self, nixpkgs, darwin, sops, hjem, ... }@inputs:
+let lib = nixpkgs.lib; in
 
 name:
 {
@@ -31,6 +32,8 @@ in systemFunc rec {
     (import ./modules/nixpkgs.nix { inherit inputs; })
     ../hosts/${name}/default.nix
     ../users/${user}/${if profile == "darwin" then "darwin" else "nixos"}.nix
+  ]
+  ++ lib.optionals (profile == "darwin") [
     (import ./modules/darwin.nix)
   ];
 }
