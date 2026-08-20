@@ -30,6 +30,7 @@ in systemFunc rec {
     (import ./modules/hjem.nix { inherit specialArgs; })
     ./modules/secrets.nix
     (import ./modules/nixpkgs.nix { inherit inputs; })
+    ./modules/packages.nix
     ../hosts/${name}/default.nix
     ../users/${user}/${if profile == "darwin" then "darwin" else "nixos"}.nix
   ]
