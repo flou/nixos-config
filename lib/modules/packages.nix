@@ -23,7 +23,6 @@
     nil
     nixd
     nixfmt
-    nixpkgs-fmt
     qmk
     rebar3
     riffdiff
