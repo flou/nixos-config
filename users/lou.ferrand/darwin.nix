@@ -5,7 +5,7 @@
     home = "/Users/lou.ferrand";
   };
 
-  age.identityPaths = [
+  sops.age.sshKeyPaths = [
     "${config.users.users.lou.ferrand.home}/.ssh/id_ed25519"
   ];
 
