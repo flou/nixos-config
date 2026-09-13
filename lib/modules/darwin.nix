@@ -33,6 +33,7 @@
     };
 
     NSGlobalDomain."com.apple.keyboard.fnState" = false;
+    NSGlobalDomain."com.apple.swipescrolldirection" = true;
     NSGlobalDomain.AppleEnableSwipeNavigateWithScrolls = true;
     NSGlobalDomain.AppleShowAllExtensions = true;
     NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
