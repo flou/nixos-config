@@ -47,7 +47,7 @@
     NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
     NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
 
-    controlcenter.BatteryShowPercentage = false;
+    controlcenter.BatteryShowPercentage = true;
 
     dock.autohide = true;
     dock.autohide-delay = 0.1;
