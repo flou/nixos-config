@@ -12,12 +12,12 @@
   hjem.users.lou = {
     enable = true;
 
-    files = {
-      ".config/git/config".text = ''
-        [user]
-          name = "lou"
-          email = "lou@example.com"
-      '';
-    };
+    # files = {
+    #   ".config/git/config".text = ''
+    #     [user]
+    #       name = "lou"
+    #       email = "lou@example.com"
+    #   '';
+    # };
   };
 }
