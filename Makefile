@@ -1,6 +1,6 @@
 .PHONY: help build dry-run diff switch list-generations rollback
 
-HOST := Majula
+HOST := $(shell hostname -s)
 
 help:
 	@echo "Available targets:"
