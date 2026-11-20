@@ -2,7 +2,6 @@
 
 {
   nix.enable = false;
-  nix.settings.experimental-features = "nix-command flakes";
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-darwin";
 
   programs.zsh.enable = true;
@@ -58,7 +57,6 @@
     dock.mru-spaces = false;
     dock.tilesize = 52;
 
-    finder.AppleShowAllExtensions = true;
     finder.FXPreferredViewStyle = "Nlsv";
     finder.NewWindowTarget = "Home";
     finder.QuitMenuItem = true;

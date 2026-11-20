@@ -1,17 +1,9 @@
 { user, ... }:
 
-let
-  home = "/Users/${user}";
-in
 {
-  users.users.${user} = {
-    name = user;
-    inherit home;
-  };
+  users.users.${user}.home = "/Users/${user}";
 
   system.primaryUser = user;
-
-  sops.age.sshKeyPaths = [ "${home}/.ssh/id_ed25519" ];
 
   hjem.users.${user}.enable = true;
 }

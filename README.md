@@ -1,8 +1,7 @@
 # nix-darwin configuration
 
-macOS hosts managed with [nix-darwin](https://github.com/nix-darwin/nix-darwin),
-[hjem](https://github.com/feel-co/hjem) and
-[sops-nix](https://github.com/Mic92/sops-nix).
+macOS hosts managed with [nix-darwin](https://github.com/nix-darwin/nix-darwin)
+and [hjem](https://github.com/feel-co/hjem).
 
 ## Layout
 
@@ -11,7 +10,7 @@ macOS hosts managed with [nix-darwin](https://github.com/nix-darwin/nix-darwin),
 - `lib/modules/` — shared configuration:
   - `darwin.nix` — macOS defaults and system settings.
   - `host.nix` — hostname-derived networking and firewall settings.
-  - `user.nix` — primary user, hjem and sops key setup.
+  - `user.nix` — primary user and hjem setup.
   - `packages.nix` — packages installed on every host.
 - `hosts/<hostname>/` — optional host-specific modules.
 - `users/<user>/darwin.nix` — optional per-user modules.

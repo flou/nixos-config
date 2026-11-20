@@ -14,11 +14,6 @@
       url = "github:feel-co/hjem/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    sops = {
-      url = "github:mic92/sops-nix/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =

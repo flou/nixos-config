@@ -3,6 +3,6 @@
 {
   hjem = {
     specialArgs = specialArgs;
-    clobberByDefault = true;
+    clobberByDefault = false;
   };
 }

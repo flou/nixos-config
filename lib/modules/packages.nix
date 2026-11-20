@@ -23,7 +23,6 @@
     nil
     nixd
     nixfmt
-    qmk
     rebar3
     riffdiff
     ripgrep
