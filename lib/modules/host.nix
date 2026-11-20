@@ -1,12 +1,13 @@
+{ hostname, ... }:
+
 {
   networking = {
-    computerName = "Majula";
-    hostName = "Majula";
-    localHostName = "Majula";
-    search = [ "Majula.local" ];
+    computerName = hostname;
+    hostName = hostname;
+    localHostName = hostname;
+    search = [ "${hostname}.local" ];
 
     knownNetworkServices = [ "Wi-Fi" ];
-
     dns = [
       "1.1.1.1"
       "1.0.0.1"
@@ -16,10 +17,10 @@
       enable = true;
       blockAllIncoming = false;
       enableStealthMode = true;
-      allowSignedApp = true;
       allowSigned = true;
+      allowSignedApp = true;
     };
   };
 
-  system.defaults.smb.NetBIOSName = "Majula";
+  system.defaults.smb.NetBIOSName = hostname;
 }

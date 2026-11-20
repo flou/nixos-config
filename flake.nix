@@ -1,4 +1,6 @@
 {
+  description = "Lou's nix-darwin configuration";
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts/main";
@@ -19,26 +21,28 @@
     };
   };
 
-  outputs = inputs@{ flake-parts, ... }:
+  outputs =
+    inputs@{ flake-parts, ... }:
     let
       mkSystem = import ./lib/mksystem.nix inputs;
-    in flake-parts.lib.mkFlake { inherit inputs; } {
+
+      # hostname -> primary user
+      hosts = {
+        Majula = "lou";
+        K1QJWD679P = "lou.ferrand";
+      };
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "aarch64-darwin" ];
 
-      flake = {
-        darwinConfigurations = {
-          Majula = mkSystem "Majula" {
-            system = "aarch64-darwin";
-            profile = "darwin";
-            user = "lou";
-          };
-
-          K1QJWD679P = mkSystem "K1QJWD679P" {
-            system = "aarch64-darwin";
-            profile = "darwin";
-            user = "lou.ferrand";
-          };
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt-tree;
         };
-      };
+
+      flake.darwinConfigurations = builtins.mapAttrs (
+        hostname: user: mkSystem { inherit hostname user; }
+      ) hosts;
     };
 }

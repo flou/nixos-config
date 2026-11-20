@@ -1,40 +1,39 @@
-{ self, nixpkgs, darwin, sops, hjem, ... }@inputs:
-let lib = nixpkgs.lib; in
-
-name:
 {
+  darwin,
+  sops,
+  hjem,
+  ...
+}@inputs:
+
+{
+  hostname,
   user,
-  system,
-  profile ? "nixos"
+  system ? "aarch64-darwin",
 }:
 
-assert builtins.elem profile [ "nixos" "darwin" "wsl" ];
-
 let
-  hjemModule = if profile == "darwin" then hjem.darwinModules else hjem.nixosModules;
-  sopsModule = if profile == "darwin" then sops.darwinModules else sops.nixosModules;
-  systemFunc = if profile == "darwin" then darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
-in systemFunc rec {
+  optionalPath = path: if builtins.pathExists path then [ path ] else [ ];
+in
+darwin.lib.darwinSystem {
   inherit system;
 
   specialArgs = {
-    inherit self;
-    inherit inputs;
-    inherit profile;
-    inherit user;
+    inherit inputs hostname user;
   };
 
   modules = [
-    sopsModule.default
-    hjemModule.default
-    (import ./modules/hjem.nix { inherit specialArgs; })
+    sops.darwinModules.default
+    hjem.darwinModules.default
+
+    ./modules/hjem.nix
     ./modules/secrets.nix
-    (import ./modules/nixpkgs.nix { inherit inputs; })
+    ./modules/nixpkgs.nix
     ./modules/packages.nix
-    ../hosts/${name}/default.nix
-    ../users/${user}/${if profile == "darwin" then "darwin" else "nixos"}.nix
+
+    ./modules/darwin.nix
+    ./modules/host.nix
+    ./modules/user.nix
   ]
-  ++ lib.optionals (profile == "darwin") [
-    (import ./modules/darwin.nix)
-  ];
+  ++ optionalPath ../users/${user}/darwin.nix
+  ++ optionalPath ../hosts/${hostname}/default.nix;
 }
